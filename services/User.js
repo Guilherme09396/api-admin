@@ -24,16 +24,16 @@ class User {
   
   async create(name, email, password) {
     try {
-      const userEmail = await this.findByEmail(email);
+      const userEmail = await this.findByEmail(emai);
       if(userEmail.status) {
-        return {status: false, err: "E-mail já cadastrado"}
+        return {status: false, scode: 422, err: "E-mail já cadastrado"}
       } else {
         const hash = await bcrypt.hash(password, 10)
         const user = await knex.insert({name, email, password: hash}).table("users");
         return {status: true}
       }
     } catch (err) {
-      return {status: false, err: "Houve um erro ao criar usuário"}
+      return {status: false, scode: 500, err: "Houve um erro ao criar usuário"}
     }
   }
 

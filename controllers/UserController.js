@@ -25,7 +25,7 @@ class UserController {
     if(user.status) {
       res.status(201).json(user)
     } else {
-      res.status(406).json(user)
+      res.status(user.scode).json(user)
     }
   } 
 
